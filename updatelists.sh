@@ -7,7 +7,7 @@ sqlite3 -batch ~/places.sqlite "SELECT url FROM moz_places, moz_historyvisits \
                        WHERE moz_places.id = moz_historyvisits.place_id and \
                        visit_date > strftime('%s','now','-9 day')*1000000 ORDER by \
                        visit_date;" | grep 'https\:\/\/www.youtube.com\/watch?v=' | \
-                       sed 's/https\:\/\/www.youtube.com\/watch?v=//;s/&[a\-zA\-Z\-\_\=.]*//' >> tmp.txt
+                       sed 's/https\:\/\/www.youtube.com\/watch?v=//;s/&.*//' >> tmp.txt
 
 echo "Updating queue:"
 cat tmp.txt | while read line
